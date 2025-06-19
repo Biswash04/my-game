@@ -9,17 +9,17 @@ function playGame(userChoice) {
   let result = "";
 
   if (userChoice === computerChoice) {
-    result = "It's a draw!";
+    result = "";
     drawCount++;
   } else if (
     (userChoice === "rock" && computerChoice === "scissors") ||
     (userChoice === "paper" && computerChoice === "rock") ||
     (userChoice === "scissors" && computerChoice === "paper")
   ) {
-    result = "You win!";
+    // result = "You win!";
     userScore++;
   } else {
-    result = "Computer wins!";
+    // result = "Computer wins!";
     computerScore++;
   }
 
@@ -30,6 +30,19 @@ function playGame(userChoice) {
          <span>${result}</span>`;
 
   updateScoreboard();
+
+  let final = "";
+
+  if (userScore === 5) {
+    final = "you win!";
+    document.getElementById("result").innerHTML = "Restart Your Game";
+  } else if (computerScore === 5) {
+    final = "computer wins";
+    document.getElementById("result").innerHTML = "Restart Your Game";
+  } else if (userScore === 6 || computerScore === 6) {
+    alert("Please Restart Your Game");
+  }
+  document.getElementById("final").innerHTML = final;
 }
 
 function updateScoreboard() {
@@ -44,4 +57,5 @@ function resetScore() {
   drawCount = 0;
   updateScoreboard();
   document.getElementById("result").innerHTML = "Scores have been reset.";
+  document.getElementById("final").innerHTML = "";
 }
